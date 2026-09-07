@@ -58,11 +58,11 @@
                     android:background="@drawable/bg_action_btn"
                     android:clickable="true"
                     android:focusable="true"
-                    android:padding="11dp"
-                    android:rotation="45"
+                    android:padding="8dp"
                     android:src="@drawable/bg_arrow_icon" />
-            </LinearLayout>
-        </LinearLayout>
+         
+                </LinearLayout>
+                </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
