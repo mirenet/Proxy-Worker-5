@@ -162,7 +162,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="Turn Off"
-                android:textColor="#fmfofp"
+                android:textColor="#FFFFFF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
