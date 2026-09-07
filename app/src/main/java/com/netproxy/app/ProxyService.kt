@@ -35,6 +35,7 @@ class ProxyService : Service() {
 
         val port = intent?.getIntExtra("PORT", 48912) ?: 48912
         val password = intent?.getStringExtra("PASSWORD") ?: "M2K938si7MwAb29shoLHew2B9hwx7N2oZwbd18"
+        val hosts = intent?.getStringExtra("HOSTS") ?: ""
 
         activePort = port
 
@@ -51,9 +52,9 @@ class ProxyService : Service() {
             this, 0, stopIntent,
             PendingIntent.FLAG_MUTABLE or PendingIntent.FLAG_UPDATE_CURRENT
         )
-       
+        
         val largeIconBitmap = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
-       
+        
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Proxy Worker Running..")
             .setContentText("Server is active on port $port")
@@ -68,7 +69,7 @@ class ProxyService : Service() {
 
         if (proxyServer == null) {
             try {
-                proxyServer = LocalProxyServer(port, password, applicationContext)
+                proxyServer = LocalProxyServer(port, password, hosts, applicationContext)
                 proxyServer?.start()
                 isServerRunning = true
             } catch (e: Exception) {
