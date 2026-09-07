@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnTurnOn: TextView
     private lateinit var btnTurnOff: TextView
     private lateinit var btnImport: TextView
-    private lateinit var btnExport: TextView
+    private lateinit var btnExport: View
     private lateinit var tvStatus: TextView
     private lateinit var tvExample: TextView
     private lateinit var prefs: SharedPreferences
