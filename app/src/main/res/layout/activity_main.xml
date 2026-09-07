@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header sa naslovom i savršeno centriranim Import/Export dugmadima -->
+        <!-- Header sa naslovom i savršeno centriranim dugmićima -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,8 +38,8 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <!-- Import dugme (+) sa savršenim centriranjem bez offseta -->
-                <TextView
+                <!-- Plus dugme (vektorsko, uvek savršeno u centru) -->
+                <ImageView
                     android:id="@+id/btnImport"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
@@ -47,15 +47,10 @@
                     android:background="@drawable/bg_action_btn"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center"
-                    android:includeFontPadding="false"
-                    android:paddingBottom="2dp"
-                    android:text="+"
-                    android:textColor="#CBD868"
-                    android:textSize="24sp"
-                    android:textStyle="normal" />
+                    android:padding="6dp"
+                    android:src="@drawable/bg_plus_icon" />
 
-                <!-- Export dugme (precizno nacrtana strelica) -->
+                <!-- Export dugme (vraćena originalna strelica) -->
                 <ImageView
                     android:id="@+id/btnExport"
                     android:layout_width="36dp"
@@ -153,7 +148,6 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <!-- Dugme Turn Off sa dodatim ripple efektom na klik -->
             <TextView
                 android:id="@+id/btnTurnOff"
                 android:layout_width="0dp"
@@ -222,7 +216,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="4dp"
-            android:fontFamily="monospace"
+            fontFamily="monospace"
             android:lineSpacingMultiplier="1.2"
             android:text="http://127.0.0.1:8080/?key=7777\nproxy://action?start=10"
             android:textColor="#CBD868"
