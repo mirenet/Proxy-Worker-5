@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header red iz HTML primera: usklađena veličina naslova i dugmadi, pomereno 5px ulevo -->
+        <!-- Header red -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:textColor="#CBD868"
                 android:textSize="20sp" />
 
-            <!-- Kontejner za dugmad pomeren 5px ulevo -->
+            <!-- Kontejner za dugmad -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -41,24 +41,24 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <!-- Import dugme (+) -->
+                <!-- Import dugme (+) sa ripple efektom -->
                 <ImageView
                     android:id="@+id/btnImport"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
                     android:layout_marginEnd="20dp"
-                    android:background="@drawable/bg_action_btn"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="6dp"
                     android:src="@drawable/bg_plus_icon" />
 
-                <!-- Export dugme (strelica u stranu -->)
+                <!-- Export dugme sa ripple efektom -->
                 <ImageView
                     android:id="@+id/btnExport"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
-                    android:background="@drawable/bg_action_btn"
+                    android:background="?android:attr/selectableItemBackgroundBorderless"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="8dp"
@@ -82,6 +82,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_input"
             android:inputType="number"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:paddingHorizontal="16dp"
             android:text="48912"
             android:textColor="#DADADA"
@@ -103,6 +106,9 @@
             android:layout_marginBottom="16dp"
             android:background="@drawable/bg_input"
             android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
             android:paddingHorizontal="16dp"
             android:text="M2K938si7MwAb29shoLHew2B9hwx7N2oZwbd18"
             android:textColor="#DADADA"
@@ -117,6 +123,7 @@
             android:textColor="#9E9DA4"
             android:textSize="13sp" />
 
+        <!-- Omogućeno glatko skrolovanje dugog teksta levo-desno -->
         <EditText
             android:id="@+id/etHosts"
             android:layout_width="match_parent"
@@ -124,6 +131,10 @@
             android:layout_marginBottom="24dp"
             android:background="@drawable/bg_input"
             android:inputType="text"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:scrollHorizontally="true"
+            android:ellipsize="none"
             android:paddingHorizontal="16dp"
             android:text="ws.audioscrobbler.com, www.last.fm, api.discogs.com, www.googleapis.com, www.youtube.com, m.youtube.com, api.deezer.com, wikipedia.org, en.wikipedia.org, lrclib.net, lyrics.lewagon.ai, api.lyrics.ovh"
             android:textColor="#DADADA"
