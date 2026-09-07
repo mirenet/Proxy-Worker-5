@@ -22,6 +22,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -50,6 +51,11 @@ class MainActivity : AppCompatActivity() {
         const val KEY_PORT = "pref_port"
         const val KEY_PASSWORD = "pref_password"
         const val KEY_HOSTS = "pref_hosts"
+    }
+
+    // Registracija birača fajlova za uvoz podešavanja sa željene lokacije
+    private val filePickerLauncher = registerForActivityResult(ActivityResultContracts.OpenDocument()) { uri: Uri? ->
+        uri?.let { parseAndApplyImportFile(it) }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -134,7 +140,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         btnImport.setOnClickListener {
-            importSettingsFromFile()
+            // Otvara sistemski prozor za ručni odabir fajla sa bilo koje lokacije
+            filePickerLauncher.launch(arrayOf("text/plain", "*/*"))
         }
 
         handleNetProxyIntent(intent)
@@ -167,13 +174,12 @@ class MainActivity : AppCompatActivity() {
 
             val content = "PORT=$port\nPASSWORD=$pass\nHOSTS=$hosts"
 
-            // Upis u Downloads folder ili spoljnu memoriju / Internal storage
+            // Eksportuje u Downloads folder kao i do sada
             val file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "PROXY.txt")
             FileWriter(file).use { it.write(content) }
 
             Toast.makeText(this, "Izveženo u Downloads/PROXY.txt", Toast.LENGTH_LONG).show()
         } catch (e: Exception) {
-            // Fallback na internal files dir ako Downloads nije dostupan
             try {
                 val file = File(filesDir, "PROXY.txt")
                 FileWriter(file).use {
@@ -186,15 +192,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun importSettingsFromFile() {
+    private fun parseAndApplyImportFile(uri: Uri) {
         try {
-            var file = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), "PROXY.txt")
-            if (!file.exists()) {
-                file = File(filesDir, "PROXY.txt")
-            }
-
-            if (file.exists()) {
-                val scanner = Scanner(file)
+            val inputStream = contentResolver.openInputStream(uri)
+            if (inputStream != null) {
+                val scanner = Scanner(inputStream)
                 var p = DEFAULT_PORT
                 var pwd = DEFAULT_PASSWORD
                 var hst = DEFAULT_HOSTS
@@ -206,15 +208,16 @@ class MainActivity : AppCompatActivity() {
                     if (line.startsWith("HOSTS=")) hst = line.substringAfter("HOSTS=")
                 }
                 scanner.close()
+                inputStream.close()
 
                 etPort.setText(p)
                 etPassword.setText(pwd)
                 etHosts.setText(hst)
                 savePreferences()
 
-                Toast.makeText(this, "Podešavanja uspešno uvežena!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Podešavanja uspešno uvežena izabranog fajla!", Toast.LENGTH_SHORT).show()
             } else {
-                Toast.makeText(this, "Fajl PROXY.txt nije pronađen!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Ne može se pročitati izabrani fajl!", Toast.LENGTH_SHORT).show()
             }
         } catch (e: Exception) {
             Toast.makeText(this, "Greška pri uvozu: ${e.message}", Toast.LENGTH_SHORT).show()
