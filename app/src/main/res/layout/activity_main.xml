@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <!-- Header sa naslovom i Import/Export dugmadima -->
+        <!-- Header sa naslovom i savršeno centriranim Import/Export dugmadima -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +38,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
+                <!-- Import dugme (+) sa savršenim centriranjem bez offseta -->
                 <TextView
                     android:id="@+id/btnImport"
                     android:layout_width="36dp"
@@ -47,22 +48,24 @@
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
+                    android:includeFontPadding="false"
+                    android:paddingBottom="2dp"
                     android:text="+"
                     android:textColor="#CBD868"
-                    android:textSize="22sp"
-                    android:textStyle="bold" />
+                    android:textSize="24sp"
+                    android:textStyle="normal" />
 
-                <TextView
+                <!-- Export dugme (precizno nacrtana strelica) -->
+                <ImageView
                     android:id="@+id/btnExport"
                     android:layout_width="36dp"
                     android:layout_height="36dp"
                     android:background="@drawable/bg_action_btn"
                     android:clickable="true"
                     android:focusable="true"
-                    android:gravity="center"
-                    android:text="➔"
-                    android:textColor="#CBD868"
-                    android:textSize="16sp" />
+                    android:padding="11dp"
+                    android:rotation="45"
+                    android:src="@drawable/bg_arrow_icon" />
             </LinearLayout>
         </LinearLayout>
 
@@ -150,14 +153,14 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <!-- Ažurirano dugme Turn Off: crvena pozadina (#D93030) i beli tekst -->
+            <!-- Dugme Turn Off sa dodatim ripple efektom na klik -->
             <TextView
                 android:id="@+id/btnTurnOff"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:layout_marginStart="6dp"
-                android:background="@drawable/bg_btn_off"
+                android:background="@drawable/bg_btn_off_ripple"
                 android:clickable="true"
                 android:focusable="true"
                 android:gravity="center"
