@@ -1,0 +1,18 @@
+<resources>
+    <!-- Koristimo baznu tamnu temu umesto Light varijante da bi kontekstni meniji bili crni -->
+    <style name="Theme.NetProxy" parent="Theme.AppCompat.NoActionBar">
+        <item name="android:statusBarColor">#070707</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">#070707</item>
+        <item name="colorPrimary">#CBD868</item>
+        <item name="colorAccent">#CBD868</item>
+    </style>
+
+    <style name="Theme.NetProxy.Transparent" parent="Theme.NetProxy">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+</resources>
