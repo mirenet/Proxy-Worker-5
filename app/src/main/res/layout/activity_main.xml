@@ -36,15 +36,15 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="-5dp"
+                android:layout_marginEnd="5dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <!-- Import dugme (+) -->
                 <ImageView
                     android:id="@+id/btnImport"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:layout_marginEnd="20dp"
                     android:background="@drawable/bg_action_btn"
                     android:clickable="true"
@@ -55,8 +55,8 @@
                 <!-- Export dugme (strelica u stranu -->)
                 <ImageView
                     android:id="@+id/btnExport"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
                     android:background="@drawable/bg_action_btn"
                     android:clickable="true"
                     android:focusable="true"
