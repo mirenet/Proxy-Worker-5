@@ -28,6 +28,7 @@ class TransparentProxyActivity : AppCompatActivity() {
                 val prefs = getSharedPreferences(MainActivity.PREFS_NAME, Context.MODE_PRIVATE)
                 val portStr = prefs.getString(MainActivity.KEY_PORT, MainActivity.DEFAULT_PORT) ?: MainActivity.DEFAULT_PORT
                 val password = prefs.getString(MainActivity.KEY_PASSWORD, MainActivity.DEFAULT_PASSWORD) ?: MainActivity.DEFAULT_PASSWORD
+                val hosts = prefs.getString(MainActivity.KEY_HOSTS, MainActivity.DEFAULT_HOSTS) ?: MainActivity.DEFAULT_HOSTS
                 
                 val port = try {
                     val p = portStr.toInt()
@@ -50,6 +51,7 @@ class TransparentProxyActivity : AppCompatActivity() {
                 val serviceIntent = Intent(this, ProxyService::class.java).apply {
                     putExtra("PORT", port)
                     putExtra("PASSWORD", password)
+                    putExtra("HOSTS", hosts)
                 }
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
                     startForegroundService(serviceIntent)
@@ -65,7 +67,6 @@ class TransparentProxyActivity : AppCompatActivity() {
                 }
             }
         }
-        // Odmah zatvori aktivnost bez ikakvog iskakanja i gubitka fokusa pozivaoca
         finish()
     }
 }
