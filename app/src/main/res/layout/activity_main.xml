@@ -13,16 +13,57 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <!-- Header sa naslovom i Import/Export dugmadima -->
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="4dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="36dp"
-            android:text="Local Host"
-            android:textColor="#CBD868"
-            android:textSize="20sp"
-            android:fontFamily="sans-serif-medium" />
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginStart="4dp"
+                android:fontFamily="sans-serif-medium"
+                android:text="Local Host"
+                android:textColor="#CBD868"
+                android:textSize="20sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/btnImport"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:layout_marginEnd="20dp"
+                    android:background="@drawable/bg_action_btn"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="+"
+                    android:textColor="#CBD868"
+                    android:textSize="22sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/btnExport"
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:background="@drawable/bg_action_btn"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:text="➔"
+                    android:textColor="#CBD868"
+                    android:textSize="16sp" />
+            </LinearLayout>
+        </LinearLayout>
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,11 +99,32 @@
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginBottom="16dp"
             android:background="@drawable/bg_input"
             android:inputType="text"
             android:paddingHorizontal="16dp"
             android:text="M2K938si7MwAb29shoLHew2B9hwx7N2oZwbd18"
+            android:textColor="#DADADA"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:layout_marginBottom="6dp"
+            android:text="All Hosts"
+            android:textColor="#9E9DA4"
+            android:textSize="13sp" />
+
+        <EditText
+            android:id="@+id/etHosts"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/bg_input"
+            android:inputType="text"
+            android:paddingHorizontal="16dp"
+            android:text="ws.audioscrobbler.com, www.last.fm, api.discogs.com, www.googleapis.com, www.youtube.com, m.youtube.com, api.deezer.com, wikipedia.org, en.wikipedia.org, lrclib.net, lyrics.lewagon.ai, api.lyrics.ovh"
             android:textColor="#DADADA"
             android:textSize="15sp" />
 
@@ -98,7 +160,7 @@
                 android:focusable="true"
                 android:gravity="center"
                 android:text="Turn Off"
-                android:textColor="#E03A44"
+                android:textColor="#F3EFEF"
                 android:textSize="14sp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -110,7 +172,7 @@
             android:layout_marginLeft="4dp"
             android:layout_marginBottom="20dp"
             android:text="Status: OFF"
-            android:textColor="#E03A44"
+            android:textColor="#D94242"
             android:textSize="14sp"
             android:textStyle="bold" />
 
