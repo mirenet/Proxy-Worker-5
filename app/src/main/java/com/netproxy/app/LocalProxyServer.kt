@@ -14,8 +14,20 @@ import java.net.URL
 import java.util.concurrent.CountDownLatch
 import java.util.concurrent.TimeUnit
 
-class LocalProxyServer(port: Int, private val secretKey: String, private val context: Context) : NanoHTTPD("127.0.0.1", port) {
+class LocalProxyServer(port: Int, private val secretKey: String, private val allowedHostsConfig: String, private val context: Context) : NanoHTTPD("127.0.0.1", port) {
     private val mainHandler = Handler(Looper.getMainLooper())
+
+    private fun isHostAllowed(host: String?): Boolean {
+        if (host.isNullOrEmpty()) return false
+        val allowedList = allowedHostsConfig.split(",")
+            .map { it.trim().lowercase() }
+            .filter { it.isNotEmpty() }
+
+        val targetHost = host.lowercase()
+        return allowedList.any { allowed ->
+            targetHost == allowed || targetHost.endsWith(".$allowed")
+        }
+    }
 
     override fun serve(session: IHTTPSession): Response {
         val remoteIp = session.remoteIpAddress
@@ -45,6 +57,11 @@ class LocalProxyServer(port: Int, private val secretKey: String, private val con
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "")
             }
             if (targetURL.port != -1 && targetURL.port != 443) {
+                return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "")
+            }
+
+            // Stroga provera dozvoljenih hostova
+            if (!isHostAllowed(targetURL.host)) {
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "")
             }
 
